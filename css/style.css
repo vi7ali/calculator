@@ -14,7 +14,7 @@ html {
 }
 
 .main {
-	flex: 0 0 400px;
+	flex: 0 0 300px;
 	text-align: left;
 }
 
@@ -39,6 +39,14 @@ html {
 
 /* CALCULATOR STYLE */
 
+button {
+	background: pink;
+}
+
+.operator {
+	background: yellow;
+}
+
 .calculator {
 	display: flex;
 	flex-flow: row wrap;
@@ -51,3 +59,20 @@ html {
 	text-align: right;
 	margin: 0;
 }
+
+#buttons {
+	display: grid;
+	grid-template: repeat(5, 1fr) / repeat(4, 1fr);
+	text-align: center;
+	height: 350px;
+}
+
+#add {
+	grid-area: 2 / 4 / 4 / 4;
+}
+
+#equals {
+	grid-area: 4 / 4 / 6 / 4;
+}
+
+
