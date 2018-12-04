@@ -4,7 +4,13 @@ html {
 	font-family: 'Roboto Slab', serif;
 }
 
-.wrapper {
+.main-wrapper {
+	display: flex;
+	flex-flow: column;
+	height: 100vh;
+}
+
+.calc-wrapper {
 	display: flex;
 	flex-flow: row;
 }
@@ -32,9 +38,7 @@ html {
 }
 
 .footer {
-	width: 100%;
-	position: absolute;
-	bottom: 0;
+	margin-top: auto;	
 }
 
 /* CALCULATOR STYLE */
@@ -74,5 +78,3 @@ button {
 #equals {
 	grid-area: 4 / 4 / 6 / 4;
 }
-
-
