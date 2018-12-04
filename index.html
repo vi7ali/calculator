@@ -6,14 +6,26 @@
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
-		<title>Basic Online Calculator</title>
+		<title>Online Calculator</title>
 	</head>
-	<body>
-		<header>
+	<body>		
+		<header class="header">
 			<h1>Online calculator for <em>The Odin Project</em></h1>
 		</header>
-		<main></main>
-		<footer>
+		<div class="wrapper">
+			<aside class="aside aside-1">Aside-1</aside>
+
+			<main class="main">
+				<div class="calculator">
+					<h2 id="formula" class="area">1</h2>
+					<h3 id="result" class="area">2</h3>
+					<div id="buttons" class="area">3</div>
+				</div>
+			</main>
+			
+			<aside class="aside aside-2">Aside-2</aside>
+		</div>
+		<footer class="footer">
 			<p>Created by <strong>Vitaly Osipov</strong></p>
 			<ul class="contacts">
 				<li>
@@ -27,6 +39,6 @@
 					</a>
 				</li>
 			</ul>
-		</footer>
+		</footer>		
 	</body>
 </html>

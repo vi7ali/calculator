@@ -1,8 +1,53 @@
+/* SITE STYLE  */
+
 html {
 	font-family: 'Roboto Slab', serif;
+}
+
+.wrapper {
+	display: flex;
+	flex-flow: row;
+}
+
+.wrapper > * {
+	flex: 1 0 auto;
+}
+
+.main {
+	flex: 0 0 400px;
+	text-align: left;
+}
+
+.aside {
+	flex: 1;
+}
+
+.header, .footer, .aside, .wrapper {
+	text-align: center;
 }
 
 .contacts li {
 	list-style: none;
 	display: inline-block;
+}
+
+.footer {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+}
+
+/* CALCULATOR STYLE */
+
+.calculator {
+	display: flex;
+	flex-flow: row wrap;
+	border: 1px solid red;
+}
+
+.area {
+	flex: 1 100%;
+	border: 1px solid green;
+	text-align: right;
+	margin: 0;
 }
