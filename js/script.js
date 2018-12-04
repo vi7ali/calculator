@@ -29,7 +29,7 @@ function operate(a, b, op) {
 			return divide(a, b);
 			break;
 		default:
-			console.log('Something went wrong in the switch statement line of the function operate');
+			console.log('Something went wrong in the switch statement of the function operate');
 			break;
 	}
 }

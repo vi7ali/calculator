@@ -1,44 +1,33 @@
-/* SITE STYLE  */
+/* SITE STYLE */
 
 html {
 	font-family: 'Roboto Slab', serif;
 }
 
-.main-wrapper {
-	display: flex;
-	flex-flow: column;
-	height: 100vh;
-}
-
-.calc-wrapper {
-	display: flex;
-	flex-flow: row;
-}
-
-.wrapper > * {
-	flex: 1 0 auto;
-}
-
-.main {
-	flex: 0 0 300px;
-	text-align: left;
-}
-
-.aside {
-	flex: 1;
-}
-
-.header, .footer, .aside, .wrapper {
+footer, .header {
 	text-align: center;
+	min-width: 340px;
+}
+
+.site-wrapper {
+	display: flex;
+	flex-flow: row wrap;
+	height: 100vh;
+	align-content: space-between;
+}
+
+.site-wrapper > * {
+	flex: 1 0 100%;
+}
+
+.main-wrapper {
+	margin: auto;
+	flex: 0 0 300px;
 }
 
 .contacts li {
 	list-style: none;
 	display: inline-block;
-}
-
-.footer {
-	margin-top: auto;	
 }
 
 /* CALCULATOR STYLE */
@@ -58,7 +47,7 @@ button {
 }
 
 .area {
-	flex: 1 100%;
+	flex: 1 0 100%;
 	border: 1px solid green;
 	text-align: right;
 	margin: 0;
@@ -67,7 +56,6 @@ button {
 #buttons {
 	display: grid;
 	grid-template: repeat(5, 1fr) / repeat(4, 1fr);
-	text-align: center;
 	height: 350px;
 }
 
