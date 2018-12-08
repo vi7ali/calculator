@@ -53,6 +53,10 @@ button {
 	margin: 0;
 }
 
+#formula, #display {
+	height: 1.5em;
+}
+
 #buttons {
 	display: grid;
 	grid-template: repeat(5, 1fr) / repeat(4, 1fr);

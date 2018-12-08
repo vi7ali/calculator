@@ -1,3 +1,43 @@
+const buttons = document.getElementById('buttons');
+const display = document.getElementById('display');
+const formula = document.getElementById('formula');
+let numbers = [];
+let operators = [];
+let number = '';
+
+buttons.addEventListener('click', populateDisplay, false);
+
+function populateDisplay(e) {
+	let button = e.target.textContent;
+
+	formula.textContent = formula.textContent + button;
+
+	if(Number.isNaN(Number(button))) {
+		populateArray(button, number);
+		number='';
+	}
+	else {
+		number = number + button;
+		display.textContent = number;
+	}
+}
+
+function populateArray(button, number) {
+	numbers.push(number);
+	
+	if(button == '=') {
+		calculate();
+	}	
+	else {
+		operators.push(button);
+		display.textContent = number;
+	}
+}
+
+function calculate {
+	let result = 
+}
+
 function add(a, b) {
 	return a+b;
 }
@@ -33,3 +73,4 @@ function operate(a, b, op) {
 			break;
 	}
 }
+
