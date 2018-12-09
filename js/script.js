@@ -1,41 +1,86 @@
-const buttons = document.getElementById('buttons');
-const display = document.getElementById('display');
-const formula = document.getElementById('formula');
-let numbers = [];
-let operators = [];
-let number = '';
+const buttons   = document.getElementById('buttons');
+const display   = document.getElementById('display');
+const formula   = document.getElementById('formula');
+const clear     = document.getElementById('clear');
+const equal     = document.getElementById('equals');
+const dot       = document.getElementById('dot');
+const negative  = document.getElementById('neg');
+const numbers   = Array.from(document.getElementsByClassName('number'));
+const operators = Array.from(document.getElementsByClassName('operator'));
 
-buttons.addEventListener('click', populateDisplay, false);
+let inputValues = [];
+let userInput = '';
 
-function populateDisplay(e) {
-	let button = e.target.textContent;
+dot.addEventListener('click', dotInput, false);
+negative.addEventListener('click', negativeInput, false);
+clear.addEventListener('click', clearInput, false);
+equal.addEventListener('click', equalInput, false);
 
-	formula.textContent = formula.textContent + button;
+numbers.forEach(el=>el.addEventListener('click', numberInput, false));
+operators.forEach(el=>el.addEventListener('click', operatorInput, false));
 
-	if(Number.isNaN(Number(button))) {
-		populateArray(button, number);
-		number='';
-	}
-	else {
-		number = number + button;
-		display.textContent = number;
-	}
+function dotInput() {
+	//TODO
 }
 
-function populateArray(button, number) {
-	numbers.push(number);
+function negativeInput() {
+	//TODO
+}
+
+function clearInput() {
+	//TODO
+}
+
+function numberInput(e) {
+	let input = e.target.textContent;
+		
+	userInput = userInput + input;	
 	
-	if(button == '=') {
-		calculate();
-	}	
-	else {
-		operators.push(button);
-		display.textContent = number;
+	if(/^0[0-9]/.test(userInput)) {
+		userInput = input;
 	}
+	showDisplay(input);
 }
 
-function calculate {
-	let result = 
+function operatorInput(e) {
+	let input = e.target.textContent;
+
+	if(!userInput.length && !inputValues.length) {
+		showDisplay('empty');
+	}
+
+	if(/[/*-+]/.test(userInput)) {
+		userInput = input;
+	}
+	else {
+		inputValues.push(userInput);
+		inputValues.push(input);
+		showDisplay(input);
+		userInput = '';
+	}
+
+}
+
+function equalInput() {
+
+}
+
+function showDisplay(element) {
+	let lastElement = userInput.length-1;
+  if(element == 'empty') {
+  	display.textContent = '';
+  	formula.textContent = '';
+  }
+  else {
+  	if(Number.isNaN(parseFloat(element))) {
+  		formula.textContent = inputValues.join('');
+  		display.textContent = '';
+  	}
+		else {
+  		formula.textContent = inputValues.join('');
+  		display.textContent = display.textContent + element;
+  	}
+  }
 }
 
 function add(a, b) {
@@ -73,4 +118,3 @@ function operate(a, b, op) {
 			break;
 	}
 }
-
