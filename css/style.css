@@ -44,22 +44,25 @@ button {
 	display: flex;
 	flex-flow: row wrap;
 	border: 1px solid red;
+	align-items: stretch;
 }
 
 .area {
 	flex: 1 0 100%;
 	border: 1px solid green;
 	text-align: right;
-	margin: 0;
 }
 
-#formula, #display {
-	height: 1.5em;
+#display, #formula {
+	height: 2em;
+	line-height: 2em;	
+	font-size: 1em;
+	margin: 0;
 }
 
 #buttons {
 	display: grid;
-	grid-template: repeat(5, 1fr) / repeat(4, 1fr);
+	grid-template: repeat(6, 1fr) / repeat(4, 1fr);
 	height: 350px;
 }
 
@@ -69,4 +72,8 @@ button {
 
 #equals {
 	grid-area: 4 / 4 / 6 / 4;
+}
+
+#backspace {
+	grid-area: 6 / 1 / 6 / 5;
 }
