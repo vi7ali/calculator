@@ -36,6 +36,7 @@ footer, .header {
 
 .operator, #clear, #equals, #backspace {
 	color: green;
+	text-decoration: bold;
 }
 
 .calculator {
