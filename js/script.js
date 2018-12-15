@@ -60,7 +60,7 @@ function numberInput(e) {
 	let input = e.target.textContent;
 	userInput = userInput + input;
 
-	//Replacing the numbers that start with zero
+	//Replacing the integer numbers that start with zero
 	if(/^0[0-9]/.test(userInput)) { 
 		userInput = input;
 	}	
@@ -69,7 +69,7 @@ function numberInput(e) {
 
 function operatorInput(e) {
 	let input = e.target.textContent;
-	//Removing the decimal point if there are no numbers after it
+	//Removing the decimal point if there are no digits after it
 	if(userInput[userInput.length-1] === '.') {
 		userInput = userInput.slice(0, -1);
 	}
@@ -84,7 +84,7 @@ function operatorInput(e) {
 			inputValues.push(input);
 		}
 		else {
-	//If it was a number then check for the floating point and round the number to 2 decimals if necessary
+	//If it was a number then check for the floating point and round the number to 2 digits after the dot
 		userInput = roundFloat(userInput);
 		inputValues.push(userInput);
 		inputValues.push(input);
@@ -106,8 +106,19 @@ function equalInput() {
 
 		let finalEquation = inputValues.join(' ');
 
-		let regexMD;
-		let regexAS;
+		let regexMD = /(-?\d*\.{0,1}\d+)\s([\/\*])\s(-?\d*\.{0,1}\d+)/;
+		let regexAS = /(-?\d*\.{0,1}\d+)\s([-\+])\s(-?\d*\.{0,1}\d+)/;
+
+		while (regexMD.test(finalEquation)) {
+			finalEquation = finalEquation.replace(regexMD, operate);
+		}
+		while (regexAS.test(finalEquation)) {
+			finalEquation = finalEquation.replace(regexAS, operate);
+		}
+		userInput = finalEquation;
+		inputValues.push('=', finalEquation);		
+		showDisplay(finalEquation);
+		inputValues = [];
 	}
 }
 
@@ -156,19 +167,19 @@ function divide(a, b) {
 	return a/b;
 }
 
-function operate(a, b, op) {
+function operate(match, a, op, b) {
 	switch(op) {
-		case '+':
-			return add(a, b);
+		case '+':			
+			return roundFloat(add(parseFloat(a), parseFloat(b)));
 			break;
 		case '-':
-			return subtract(a, b);
+			return roundFloat(subtract(parseFloat(a), parseFloat(b)));
 			break;
 		case '*':
-			return multiply(a, b);
+			return roundFloat(multiply(parseFloat(a), parseFloat(b)));
 			break;
 		case '/':
-			return divide(a, b);
+			return roundFloat(divide(parseFloat(a), parseFloat(b)));
 			break;
 		default:
 			console.log('Something went wrong in the switch statement of the function operate');
