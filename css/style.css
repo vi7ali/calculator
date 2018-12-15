@@ -2,15 +2,25 @@
 
 .button {
 	padding: 0;
+	/*border-radius: 15%;*/
 }
 
 html {
 	font-family: 'Roboto Slab', serif;
 }
 
-footer, .header {
+footer, header {
 	text-align: center;
 	min-width: 340px;
+	color: rgb(88, 88, 88);	
+}
+
+header {
+	box-shadow: 0 4px 2px -2px gray;
+}
+
+footer {
+	box-shadow: 0 -4px 2px 2px gray;
 }
 
 .site-wrapper {
@@ -40,12 +50,12 @@ footer, .header {
 }
 
 .calculator {
+	background-color: rgb(31, 31, 31);
 	display: flex;
 	flex-flow: row wrap;
 	border: 1px solid black;
 	border-top: 2px solid black;
 	align-items: stretch;
-	background-color: grey;
 }
 
 .area {
@@ -85,6 +95,6 @@ footer, .header {
 #model {
 	margin: auto;
 	grid-area: 1 / 1 / 1 / 5;
-	color: white;
+	color: rgb(181, 181, 181);
 	/*border: 3px solid black;*/
 }

@@ -16,9 +16,9 @@ backspace.addEventListener('click', backspaceInput, false);
 numbers.forEach(el=>el.addEventListener('click', numberInput, false));
 operators.forEach(el=>el.addEventListener('click', operatorInput, false));
 
+const dbZero = 'DIVISION BY ZERO';
 let inputValues = [];
 let userInput = '';
-let dbZero = 'DIVISION BY ZERO';
 
 function backspaceInput() {
 	if(userInput.length)
