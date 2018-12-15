@@ -18,34 +18,29 @@ operators.forEach(el=>el.addEventListener('click', operatorInput, false));
 
 let inputValues = [];
 let userInput = '';
+let dbZero = 'DIVISION BY ZERO';
 
 function backspaceInput() {
-	if(userInput.length) {
+	if(userInput.length)
 		userInput = userInput.slice(0, -1);
-	}
 	showDisplay(userInput);
 }
 
 function dotInput() {
-
-	if(!userInput.length) {
+	if(!userInput.length)
 		userInput = '0.';
-	}
 
-	if(!/\./.test(userInput)) {
+	if(!/\./.test(userInput))
 		userInput = userInput + '.';		
-	}
 	showDisplay(userInput);
 }
 
 function negativeInput() {
 	if(userInput.length && userInput !== '0') {
-		if(!/^\-/.test(userInput)) {
+		if(!/^\-/.test(userInput))
 			userInput = '-' + userInput;
-		}
-		else {
+		else
 			userInput = userInput.slice(1);
-		}
 		showDisplay(userInput);
 	}
 }
@@ -61,18 +56,16 @@ function numberInput(e) {
 	userInput = userInput + input;
 
 	//Replacing the integer numbers that start with zero
-	if(/^0[0-9]/.test(userInput)) { 
+	if(/^0[0-9]/.test(userInput))
 		userInput = input;
-	}	
 	showDisplay(userInput);
 }
 
 function operatorInput(e) {
 	let input = e.target.textContent;
 	//Removing the decimal point if there are no digits after it
-	if(userInput[userInput.length-1] === '.') {
+	if(userInput[userInput.length-1] === '.')
 		userInput = userInput.slice(0, -1);
-	}
 
 	if(!userInput.length && !inputValues.length) {
 		showDisplay('empty');
@@ -104,21 +97,33 @@ function equalInput() {
 			inputValues.push(userInput);
 		}
 
-		let finalEquation = inputValues.join(' ');
-
-		let regexMD = /(-?\d*\.{0,1}\d+)\s([\/\*])\s(-?\d*\.{0,1}\d+)/;
+		let finalExpression = inputValues.join(' ');
+		let regexMD = /(-?\d*\.{0,1}\d+)\s([÷×])\s(-?\d*\.{0,1}\d+)/;
 		let regexAS = /(-?\d*\.{0,1}\d+)\s([-\+])\s(-?\d*\.{0,1}\d+)/;
+		let regexDivByZero = /-?\d*\.{0,1}\d+\s÷\s0/;
 
-		while (regexMD.test(finalEquation)) {
-			finalEquation = finalEquation.replace(regexMD, operate);
+		while (regexMD.test(finalExpression)) {
+			if(regexDivByZero.test(finalExpression)) {				
+				finalExpression = dbZero;
+			}
+			else {
+			finalExpression = finalExpression.replace(regexMD, operate);
+			}
 		}
-		while (regexAS.test(finalEquation)) {
-			finalEquation = finalEquation.replace(regexAS, operate);
+		while (regexAS.test(finalExpression)) {
+			finalExpression = finalExpression.replace(regexAS, operate);
 		}
-		userInput = finalEquation;
-		inputValues.push('=', finalEquation);		
-		showDisplay(finalEquation);
-		inputValues = [];
+		
+		if(finalExpression !== dbZero) {
+			userInput = finalExpression;
+			inputValues.push('=', finalExpression);		
+			showDisplay(finalExpression);
+			inputValues = [];
+		}
+		else {
+			clearInput();
+			showDisplay(finalExpression);
+		}
 	}
 }
 
@@ -128,13 +133,27 @@ function showDisplay(element) {
   	formula.textContent = '';
   }
   if(Number.isNaN(parseFloat(element))) {
- 		formula.textContent = inputValues.join(' ');
- 		display.textContent = '';
+  	if(element === dbZero) {
+  		formula.textContent = dbZero;
+  		display.textContent = dbZero;
+  	}
+  	else {
+	 		formula.textContent = checkLength(inputValues.join(' '));
+	 		display.textContent = '';
+ 		}
  	}
 	else {
- 		formula.textContent = inputValues.join(' ');
- 		display.textContent = element;
+ 		formula.textContent = checkLength(inputValues.join(' '));
+ 		display.textContent = checkLength(element);
  	}
+}
+
+function checkLength(str) {
+	let maxLength = 30;
+
+	if(str.length>maxLength)
+		str = str.slice(-maxLength);
+	return str;
 }
 
 function roundFloat(el) {
@@ -143,43 +162,42 @@ function roundFloat(el) {
 	
 	if(regex.test(el)) {
 		number = Math.round(el*100)/100;
-		return number.toString();		
+		return number.toString();
 	}
 	else {
 		return el;
 	}
 }
 
-
 function add(a, b) {
-	return a+b;
+	return roundFloat(a+b);
 }
 
 function subtract(a, b) {
-	return a-b;	
+	return roundFloat(a-b);
 }
 
 function multiply(a, b)  {
-	return a*b;
+	return roundFloat(a*b);
 }
 
 function divide(a, b) {
-	return a/b;
+	return roundFloat(a/b);
 }
 
 function operate(match, a, op, b) {
 	switch(op) {
 		case '+':			
-			return roundFloat(add(parseFloat(a), parseFloat(b)));
+			return add(parseFloat(a), parseFloat(b));
 			break;
 		case '-':
-			return roundFloat(subtract(parseFloat(a), parseFloat(b)));
+			return subtract(parseFloat(a), parseFloat(b));
 			break;
-		case '*':
-			return roundFloat(multiply(parseFloat(a), parseFloat(b)));
+		case '×':
+			return multiply(parseFloat(a), parseFloat(b));
 			break;
-		case '/':
-			return roundFloat(divide(parseFloat(a), parseFloat(b)));
+		case '÷':
+			return divide(parseFloat(a), parseFloat(b));
 			break;
 		default:
 			console.log('Something went wrong in the switch statement of the function operate');

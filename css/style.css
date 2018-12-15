@@ -1,5 +1,9 @@
 /* SITE STYLE */
 
+.button {
+	padding: 0;
+}
+
 html {
 	font-family: 'Roboto Slab', serif;
 }
@@ -30,55 +34,56 @@ footer, .header {
 	display: inline-block;
 }
 
-/* CALCULATOR STYLE */
-
-button {
-	background: pink;
-}
-
-.operator {
-	background: yellow;
+.operator, #clear, #equals, #backspace {
+	color: green;
 }
 
 .calculator {
 	display: flex;
 	flex-flow: row wrap;
-	border: 1px solid red;
+	border: 1px solid black;
+	border-top: 2px solid black;
 	align-items: stretch;
+	background-color: grey;
 }
 
 .area {
 	flex: 1 0 100%;
-	border: 1px solid green;
-	text-align: right;
+	text-align: right;	
 }
 
-#display, #formula {
-	height: 2em;
-	line-height: 2em;	
-	font-size: 1em;
+#display, #formula {	
 	margin: 0;
+	background-color: white;
+}
+
+#display {
+	height: 1.5em;
+	line-height: 1.5em;
+	font-size: 1em;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+}
+
+#formula {
+	height: 2.5em;
+	line-height: 2.5em;
+	font-size: 1.1em;
 }
 
 #buttons {
 	display: grid;
-	grid-template: repeat(6, 1fr) / repeat(4, 1fr);
+	grid-template: 0.5fr repeat(5, 1fr) / repeat(4, 1fr);
 	height: 350px;
-}
-
-#add {
-	grid-area: 3 / 4 / 5 / 4;
 }
 
 #equals {
 	grid-area: 5 / 4 / 7 / 4;
 }
 
-#backspace {
-	grid-area: 1 / 3 / 1 / 5;
-}
-
 #model {
 	margin: auto;
-	grid-area: 1 / 1 / 1 / 3;
+	grid-area: 1 / 1 / 1 / 5;
+	color: white;
+	/*border: 3px solid black;*/
 }
