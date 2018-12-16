@@ -11,7 +11,7 @@ It also supports the 'backspace', 'clear' and 'change sign' functions.
   * If the first number is zero, no additional zeros will be displayed after the first one.
   * If the dot button is pressed without any numbers on the display. Zero is added at the start.
   * If there are no numbers after the dot, then it's removed.
-  * No more one dot is allowed on each number.
+  * No more than one dot is allowed in each number.
   * Numbers with floating point are rounded to 2 digits after the dot.
-  * The length of the output is limited to 25 characters from the end of the expression.
+  * The length of the output is limited to 25 characters from the expression end.
   * _NO **EVAL()** was used. Only Regular Expressions_
