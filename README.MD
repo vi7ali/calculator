@@ -1,11 +1,11 @@
-#Online Calculator
-##Created using **HTML** **CSS** and **JavaScript**
+# Online Calculator
+## Created using **HTML** **CSS** and **JavaScript**
 
-###Description
+### Description
 Basic calculator wich supports the addition, subtraction, multiplication and division operations.
 It also supports the 'backspace', 'clear' and 'change sign' functions.
 
-###Highlights
+### Highlights
 * Division by zero is handled.
 * Number input control.
   * If the first number is zero, no additional zeros will be displayed after the first one.
