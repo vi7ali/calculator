@@ -149,7 +149,7 @@ function showDisplay(element) {
 }
 
 function checkLength(str) {
-	let maxLength = 25;
+	let maxLength = 32;
 
 	if(str.length>maxLength)
 		str = str.slice(-maxLength);
